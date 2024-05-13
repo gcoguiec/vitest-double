@@ -60,6 +60,11 @@ const dbl = double<TypeToStub>({
 // [propertyA is modified...]
 
 expect(dbl).toHaveDirtyProperty('propertyA');
+```
+
+```ts
+import { vi, expect } from 'vitest';
+import { double } from 'vitest-double';
 
 // Example with HTMLElement type:
 const element = double<HTMLElement>({
