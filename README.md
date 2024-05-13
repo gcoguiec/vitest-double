@@ -57,6 +57,10 @@ const dbl = double<TypeToStub>({
   methodC: vi.fn(() => true) // A stub with default implementation.
 });
 
+// [propertyA is modified...]
+
+expect(dbl).toHaveDirtyProperty('propertyA');
+
 // Example with HTMLElement type:
 const element = double<HTMLElement>({
   focus: vi.fn(),
@@ -66,7 +70,7 @@ const element = double<HTMLElement>({
   addEventListener: vi.fn()
 });
 
-// [...]
+// [something calls focus() on HTML element...]
 
 expect(element.focus).toHaveBeenCalled();
 ```
