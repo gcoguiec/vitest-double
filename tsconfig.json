@@ -4,8 +4,8 @@
     "target": "ESNext",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "rootDir": ".",
+    "rootDir": "src",
     "noEmit": true
   },
-  "include": ["**/*.ts"]
+  "include": ["src/**/*.ts"]
 }

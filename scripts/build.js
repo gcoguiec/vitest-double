@@ -5,7 +5,7 @@ import dts from 'npm-dts';
 new dts.Generator(
   {
     tsc: '-p tsconfig.dist.json',
-    entry: 'index.ts',
+    entry: 'src/index.ts',
     output: 'dist/index.d.ts'
   },
   false,
@@ -14,7 +14,7 @@ new dts.Generator(
 
 context({
   entryPoints: {
-    index: './out/index.js'
+    index: './out/src/index.js'
   },
   bundle: true,
   outdir: './dist',

@@ -7,5 +7,5 @@
     "declaration": true,
     "declarationDir": "out"
   },
-  "exclude": ["**/*.spec.ts"]
+  "exclude": ["src/**/*.spec.ts"]
 }
