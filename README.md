@@ -47,19 +47,9 @@ bun add -D vitest-double
 ## Usage
 
 ```ts
-import { vi, expect } from 'vitest';
 import { double } from 'vitest-double';
 
-// In a nutshell:
-const dbl = double<TypeToStub>({
-  propertyA: 'string', // Any scalar value.
-  methodB: vi.fn(), // A stub function.
-  methodC: vi.fn(() => true) // A stub with default implementation.
-});
-
-// [propertyA is modified...]
-
-expect(dbl).toHaveDirtyProperty('propertyA');
+const navigator = double<Navigator>();
 ```
 
 ```ts
@@ -78,6 +68,22 @@ const element = double<HTMLElement>({
 // [something calls focus() on HTML element...]
 
 expect(element.focus).toHaveBeenCalled();
+```
+
+```ts
+import { vi, expect } from 'vitest';
+import { double } from 'vitest-double';
+
+// In a nutshell:
+const dbl = double<TypeToStub>({
+  propertyA: 'string', // Any scalar value.
+  methodB: vi.fn(), // A stub function.
+  methodC: vi.fn(() => true) // A stub with default implementation.
+});
+
+// [propertyA is modified...]
+
+expect(dbl).toHaveDirtyProperty('propertyA');
 ```
 
 ## License
