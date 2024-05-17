@@ -1,6 +1,6 @@
 {
   "name": "vitest-double",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "BSD-2-Clause",
   "author": {
     "name": "Guillaume 'Yugo' Coguiec",
@@ -67,7 +67,7 @@
   },
   "volta": {
     "node": "22.1.0",
-    "pnpm": "9.1.0"
+    "pnpm": "9.1.1"
   },
-  "packageManager": "pnpm@9.1.0"
+  "packageManager": "pnpm@9.1.1"
 }
