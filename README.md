@@ -24,6 +24,8 @@
 
 `vitest-double` is a tiny helper that allows you to create the full or partial "double" of a typed object while keeping its original type signature.
 
+('vitesse double' means 'double speed' in French)
+
 ## Getting started
 
 To add vitest-double to your project:
