@@ -28,7 +28,7 @@
     "/TS[^\\s]+/",
     "\\(#.+?\\)"
   ],
-  "words": ["gcoguiec"],
+  "words": ["gcoguiec", "vitesse"],
   "overrides": [
     {
       "filename": "**/*.{ts,js}",
