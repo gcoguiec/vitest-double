@@ -6,7 +6,7 @@ import {
   double,
   makeDouble,
   toHaveDirtyProperty
-} from './double.js';
+} from './index.js';
 
 describe('buildProxyHandler()', () => {
   let subject: ProxyHandler<Record<string, unknown>>;
