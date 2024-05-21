@@ -48,11 +48,16 @@ bun add -D vitest-double
 
 ## Usage
 
+Calling `double<MyType>()` will create a double instance with correct type signature:
+
 ```ts
 import { double } from 'vitest-double';
 
+// Mocking the Navigator browser object:
 const navigator = double<Navigator>();
 ```
+
+You can use Vitest's usual bells and whistles to mock a double partially:
 
 ```ts
 import { vi, expect } from 'vitest';
@@ -60,6 +65,7 @@ import { double } from 'vitest-double';
 
 // Example with HTMLElement type:
 const element = double<HTMLElement>({
+  hidden: false,
   focus: vi.fn(),
   removeAttribute: vi.fn(),
   removeEventListener: vi.fn(),
@@ -70,23 +76,46 @@ const element = double<HTMLElement>({
 // [something calls focus() on HTML element...]
 
 expect(element.focus).toHaveBeenCalled();
+expect(element).not.toHaveDirtyProperty('hidden');
 ```
+
+Doubles can be used to mock fairly complex structures; here is an example of VSCode's API:
 
 ```ts
-import { vi, expect } from 'vitest';
+// vscode-shim.ts
+import type * as vscode from 'vscode';
+
 import { double } from 'vitest-double';
 
-// In a nutshell:
-const dbl = double<TypeToStub>({
-  propertyA: 'string', // Any scalar value.
-  methodB: vi.fn(), // A stub function.
-  methodC: vi.fn(() => true) // A stub with default implementation.
+export const workspace = double<typeof vscode.workspace>({
+  getConfiguration: vi.fn(() =>
+    double<vscode.WorkspaceConfiguration>({
+      get: vi.fn(() => {})
+    })
+  )
 });
 
-// [propertyA is modified...]
-
-expect(dbl).toHaveDirtyProperty('propertyA');
+export const window = double<typeof vscode.window>({
+  createOutputChannel: double<typeof vscode.window.createOutputChannel>(() =>
+    double<vscode.LogOutputChannel>({
+      clear: vi.fn(),
+      onDidChangeLogLevel: vi.fn()
+    })
+  )
+});
 ```
+
+Register your shim in your Vite or Vitest configuration file and use it in your specs:
+
+```ts
+resolve: {
+  alias: {
+    vscode: resolve(process.cwd(), 'vscode-shim.ts');
+  }
+}
+```
+
+You can use doubles to mock pretty much every third-party API.
 
 ## License
 
